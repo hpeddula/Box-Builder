@@ -40,7 +40,7 @@ export default class BoxBuilder extends React.Component {
         }
     );
     const countStyle={
-        fontSize:count > 10 ? count+'px':20+'px'
+        fontSize:count >= 10 ? count*9+'px':30+'px'
     }
         return (
             <div>
