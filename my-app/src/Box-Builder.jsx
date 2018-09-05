@@ -47,14 +47,14 @@ export default class BoxBuilder extends React.Component {
                 <h1 className="text-center">Box Builder</h1>
                 <h3 className="text-center">Start Building</h3>
                 <div className="row btn-wrapper">
-                    <div className="col-sm-3"></div>
-                    <div className="col-sm-3">
+                    <div className="col-sm-5"></div>
+                    <div className="col-sm-1">
                         <button className="btn btn-success" onClick={() => { this.AddBoxes(counter) }}>Add Box</button>
                     </div>
-                    <div className="col-sm-3">
+                    <div className="col-sm-1">
                         <button className="btn btn-danger" onClick={()=>{this.RemoveBoxes(counter)}}>Remove Box</button>
                     </div>
-                    <div className="col-sm-3"></div>
+                    <div className="col-sm-5"></div>
                 </div>
                 <div className="msg-wrapper">
                     {count > 0 &&
