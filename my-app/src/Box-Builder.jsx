@@ -1,12 +1,12 @@
 import React from 'react';
 import './Box-Builder.css';
 export default class BoxBuilder extends React.Component {
-    
+
     constructor(props) {
         super(props);
         this.state = {
             boxes: [],
-            counter:0
+            counter: 0
         }
         this.AddBoxes = this.AddBoxes.bind(this);
         this.RemoveBoxes = this.RemoveBoxes.bind(this);
@@ -14,47 +14,44 @@ export default class BoxBuilder extends React.Component {
     }
     // Method to Add Boxes on to the Stack
     AddBoxes(i) {
-        i +=1;
+        i += 1;
         this.setState({
-            boxes: [...this.state.boxes,i],
-            counter:i
+            boxes: [...this.state.boxes, i],
+            counter: i
+        })
+    }
+    handleInput(e) {
+        const boxes = this.state.boxes.slice();
+        for (let i = 1; i < e.target.value; i++) {
+            boxes[i] = i;
+        }
+        this.setState({
+            boxes: [...boxes],
+            counter:boxes.length
         })
     }
     // Method to remove Boxes
     RemoveBoxes(i) {
-        i -=1;
+        if(i >0) i -= 1;
         const boxes = this.state.boxes.slice();
         boxes.pop();
         this.setState({
             boxes: boxes,
-            counter:i
+            counter: i
         });
-    }
-    handleInput(e)
-    {
-        const value =e.target.value;
-        const boxes= this.state.boxes.slice();
-        for(let i=1;i<=e.target.value;i++)
-        {
-            boxes[i]=i;
-        }
-        this.setState({
-            boxes:boxes
-        })
     }
     render() {
         const count = this.state.boxes.length;
         const counter = this.state.counter;
-        const boxList = this.state.boxes.map((box)=>
-        {
-            return(
-            <span className="box" key={box.toString()}>{box}</span>
+        const boxList = this.state.boxes.map((box) => {
+            return (
+                <span className="box" key={box.toString()}>{box}</span>
             );
         }
-    );
-    const countStyle={
-        fontSize:count >= 10 ? count*9+'px':30+'px'
-    }
+        );
+        const countStyle = {
+            fontSize: count >= 10 ? count * 9 + 'px' : 30 + 'px'
+        }
         return (
             <div>
                 <h1 className="text-center">Box Builder</h1>
@@ -65,7 +62,7 @@ export default class BoxBuilder extends React.Component {
                         <button className="btn btn-success" onClick={() => { this.AddBoxes(counter) }}>Add Box</button>
                     </div>
                     <div className="col-sm-1">
-                        <button className="btn btn-danger" onClick={()=>{this.RemoveBoxes(counter)}}>Remove Box</button>
+                        <button className="btn btn-danger" onClick={() => { this.RemoveBoxes(counter) }}>Remove Box</button>
                     </div>
                     <div className="col-sm-5"></div>
                 </div>
