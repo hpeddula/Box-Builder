@@ -10,6 +10,7 @@ export default class BoxBuilder extends React.Component {
         }
         this.AddBoxes = this.AddBoxes.bind(this);
         this.RemoveBoxes = this.RemoveBoxes.bind(this);
+        this.handleInput = this.handleInput.bind(this);
     }
     // Method to Add Boxes on to the Stack
     AddBoxes(i) {
@@ -28,6 +29,18 @@ export default class BoxBuilder extends React.Component {
             boxes: boxes,
             counter:i
         });
+    }
+    handleInput(e)
+    {
+        const value =e.target.value;
+        const boxes= this.state.boxes.slice();
+        for(let i=1;i<=e.target.value;i++)
+        {
+            boxes[i]=i;
+        }
+        this.setState({
+            boxes:boxes
+        })
     }
     render() {
         const count = this.state.boxes.length;
@@ -61,6 +74,7 @@ export default class BoxBuilder extends React.Component {
                         <div>
                             <p>{boxList}</p>
                             <p style={countStyle}>{count}</p>
+                            <input type="text" defaultValue={count} onChange={this.handleInput} />
                         </div>
                     }
                     {count === 0 && `No boxes`}
